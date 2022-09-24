@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from 'react';
+
+import { people } from './data';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [index, setIndex] = useState(0);
+  const { name, job, image, text } = people[index];
+
+  const checkPerson = number => {
+    if (number > people.length - 1) {
+      return 0;
+    }
+    if (number < 0) {
+      return people.length - 1;
+    }
+    return number;
+  };
+
+  const prevPerson = () => {
+    setIndex(index => {
+      let newIndex = index - 1;
+      return checkPerson(newIndex);
+    });
+  };
+
+  const nextPerson = () => {
+    setIndex(index => {
+      let newIndex = index + 1;
+      return checkPerson(newIndex);
+    });
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <div className="container__info">
+        <img src={image} alt={name} />
+        <p>{text}</p>
+        <h1>{name}</h1>
+        <p>{job}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={prevPerson}>prev</button>
+      <button onClick={nextPerson}>next</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
