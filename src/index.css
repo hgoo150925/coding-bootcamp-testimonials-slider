@@ -24,21 +24,145 @@ html {
 }
 
 body {
-  font-family: var(--Inter);
   background-image: url('../src/assets/images/pattern-curve.svg');
-  background-repeat: no-repeat;
   background-position: bottom left;
-  /* VH significa viewport height (altura del dispositivo). También funciona como porcentaje, especificar 10vh es equivalente a ocupar 10% de la altura visible de la pantalla. */
-  /* https://www.freecodecamp.org/espanol/news/aprende-unidades-de-medidad-css-em-rem-vh-y-vw-con-ejemplos-de-codigos/#:~:text=VH%20significa%20viewport%20height%20(altura,altura%20visible%20de%20la%20pantalla.&text=Si%20miras%20cuidadosamente%20puedes%20ver,la%20altura%20de%20la%20pantalla. */
-  min-height: 100vh;
+  background-repeat: no-repeat;
+  font-family: var(--Inter);
   margin: 10rem 0 0 0;
+  /* https://www.freecodecamp.org/espanol/news/aprende-unidades-de-medidad-css-em-rem-vh-y-vw-con-ejemplos-de-codigos/#:~:text=VH%20significa%20viewport%20height%20(altura,altura%20visible%20de%20la%20pantalla.&text=Si%20miras%20cuidadosamente%20puedes%20ver,la%20altura%20de%20la%20pantalla. */
+  /* VH significa viewport height (altura del dispositivo). También funciona como porcentaje, especificar 10vh es equivalente a ocupar 10% de la altura visible de la pantalla. */
+  min-height: 100vh;
 }
 .container {
-  border: 1px solid blue;
-  width: 144rem;
   min-height: 100vh;
+  position: relative;
 }
-.container__info {
-  border: 1px solid red;
-  width: 64.3rem;
+.container__image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.bg {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  z-index: -1;
+  width: 35rem;
+  object-fit: fill;
+}
+.photo {
+  width: 28rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.container__description {
+  padding: 7rem 0 0 0;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  color: var(--Dark-Blue);
+  background-image: url('../src/assets/images/pattern-quotes.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 15%;
+  background-size: 7.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+  transform: none;
+}
+.position {
+  padding: 2.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.name,
+.job {
+  font-weight: 600;
+}
+.name {
+  color: var(--Dark-Blue);
+}
+.job {
+  color: var(--Grayish-Blue);
+}
+.button-next-prev {
+  position: absolute;
+  background-color: #fff;
+  padding: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -2rem;
+  width: 10rem;
+  border-radius: 5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.prev {
+  user-select: none;
+}
+
+.next {
+  transform: translateX(5rem);
+  user-select: none;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: lightblue;
+  padding: 0.3rem;
+  border-radius: 0 5rem 5rem 0;
+}
+.prev:hover {
+  border-radius: 5rem 0 0 5rem;
+}
+
+.slide {
+  display: none;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 1000px) {
+  .slide {
+    display: flex;
+    flex-direction: row-reverse;
+    transform: translateX(-10%);
+  }
+
+  .container__description {
+    text-align: left;
+    width: 45%;
+    font-size: 2.8rem;
+    transform: translateX(40%);
+    background-position: 15% 15%;
+  }
+
+  .bg {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    z-index: -1;
+    width: 90%;
+    object-fit: fill;
+  }
+
+  .container__image {
+    width: 50%;
+  }
+
+  .photo {
+    width: 70%;
+  }
+
+  .position {
+    flex-direction: row;
+    font-size: 1.6rem;
+  }
+
+  .name {
+    margin: 0 1rem 0 0;
+  }
 }
